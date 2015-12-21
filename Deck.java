@@ -8,8 +8,7 @@ public class Deck
 	private boolean isShuffled;
 	
 	private char[] validSuits = {'♥', '♦', '♣', '♠'};
-	private char[] validRanks = {'A', '2', '3', '4', '5', '6', '7', 
-								 '8', '9', 'T', 'J', 'Q', 'K'     };
+	private char[] validRanks = {'A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K'     };
 
 	// Default deck has one card of each rank for each suit, for a total of 52 cards.
 	public Deck() 
@@ -58,6 +57,15 @@ public class Deck
 		isShuffled = true;
 	}
 	
+	public void deal(Hand hand)
+	{
+		System.out.println("Dealing...");
+		PlayingCard dealt = deck.get(0);
+		deck.remove(0);
+		
+		hand.accept(dealt);
+	}
+	
 	public static void main(String[] args) {
 		Deck blackjack = new Deck();
 		
@@ -68,5 +76,24 @@ public class Deck
 		
 		System.out.println("After shuffling: ");
 		blackjack.showDeck();
+		
+		Hand p1 = new Hand();
+		Hand d1 = new Hand();
+		
+		blackjack.deal(p1);
+		blackjack.deal(d1);
+
+		blackjack.deal(p1);
+		blackjack.deal(d1);
+
+		blackjack.deal(p1);
+		blackjack.deal(d1);
+		
+		p1.showHand();
+		d1.showDealer();
+		
+		blackjack.showDeck();
+		
+		
 	}
 }
