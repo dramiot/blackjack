@@ -45,6 +45,7 @@ public class Hand
 		hand.get(0).flipCard();
 	}
 	
+	// acceptCard adds the PlayingCard provided by the parameter to the hand.
 	public void acceptCard(PlayingCard card)
 	{
 		hand.add(card);
