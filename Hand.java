@@ -68,6 +68,11 @@ public class Hand
 	{
 		return score;
 	}
+    
+    public int getSoftCount()
+    {
+        return softCount;
+    }
 	
 	// isBlackjack returns true if a 2-card hand consists of an A and a T/J/Q/K.
 	public boolean isBlackjack()
@@ -76,19 +81,19 @@ public class Hand
 		if(hand.size() == 2)
 		{
 			// If card 1 is an Ace and card 2 is a 10/J/Q/K
-			if	   (hand.get(0).getRank() == 'A' &&
-				   (hand.get(1).getRank() == 'T' ||
-					hand.get(1).getRank() == 'J' ||
-					hand.get(1).getRank() == 'Q' ||
-					hand.get(1).getRank() == 'K' ))
-						blackjack = true;
+			if     (hand.get(0).getRank() == 'A' &&
+                   (hand.get(1).getRank() == 'T' ||
+                    hand.get(1).getRank() == 'J' ||
+                    hand.get(1).getRank() == 'Q' ||
+                    hand.get(1).getRank() == 'K' ))
+                        blackjack = true;
 			// If card 2 is an Ace and card 1 is a 10/J/Q/K
 			else if(hand.get(1).getRank() == 'A' &&
-				   (hand.get(0).getRank() == 'T' ||
-					hand.get(0).getRank() == 'J' ||
-					hand.get(0).getRank() == 'Q' ||
-					hand.get(0).getRank() == 'K' ))
-						blackjack = true;
+                   (hand.get(0).getRank() == 'T' ||
+                    hand.get(0).getRank() == 'J' ||
+                    hand.get(0).getRank() == 'Q' ||
+                    hand.get(0).getRank() == 'K' ))
+                        blackjack = true;
 				
 		}
 		return blackjack;

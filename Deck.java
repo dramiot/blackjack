@@ -43,20 +43,26 @@ public class Deck
 	// shuffle changes the order of PlayingCards in the deck.
 	public void shuffle()
 	{
-		int j;
-		PlayingCard temp;
-		
-		for(int i = 0; i < deck.size(); i++)
-		{
-			j = (int)(Math.random() * 104) % 52;
-			temp = deck.get(i);
-			deck.set(i, deck.get(j));
-			deck.set(j, temp);
-		}
-		
-		isShuffled = true;
+        if(!isShuffled)
+        {
+            System.out.println("Shuffling the deck...");
+            
+            int j;
+            PlayingCard temp;
+            
+            for(int i = 0; i < deck.size(); i++)
+            {
+                j = (int)(Math.random() * 104) % 52;
+                temp = deck.get(i);
+                deck.set(i, deck.get(j));
+                deck.set(j, temp);
+            }
+            
+            isShuffled = true;
+        }
 	}
 	
+    // deal deals the first card in the deck to the provided hand parameter.
 	public void deal(Hand hand)
 	{
 		System.out.println("Dealing...");
@@ -65,35 +71,27 @@ public class Deck
 		
 		hand.accept(dealt);
 	}
-	
-	public static void main(String[] args) {
-		Deck blackjack = new Deck();
+    
+    // reset recreates the deck when if it has less than 12 cards in it.
+    public void reset()
+    {
+        if(deck.size() < 12)
+        {
+            deck.clear();
+            deck = new ArrayList<PlayingCard>();
+            for(char suit : validSuits)
+            {
+                for(char rank : validRanks)
+                    deck.add(new PlayingCard(rank, suit));
+            }
 		
-		System.out.println("Before shuffling: ");
-		blackjack.showDeck();
-		
-		blackjack.shuffle();
-		
-		System.out.println("After shuffling: ");
-		blackjack.showDeck();
-		
-		Hand p1 = new Hand();
-		Hand d1 = new Hand();
-		
-		blackjack.deal(p1);
-		blackjack.deal(d1);
-
-		blackjack.deal(p1);
-		blackjack.deal(d1);
-
-		blackjack.deal(p1);
-		blackjack.deal(d1);
-		
-		p1.showHand();
-		d1.showDealer();
-		
-		blackjack.showDeck();
-		
-		
-	}
+		isShuffled = false;
+        }
+    }
+    
+    // getSize returns the size of the deck.
+    public int getSize()
+    {
+        return deck.size();
+    }
 }
